@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book CRUD</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            margin-top: 50px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+
+        .action-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .action-links a {
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #fff;
+            background-color: #333;
+            font-size: 14px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .action-links a:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Book CRUD</h1>
+
+        <form method="post" action="/appDoc">
+            <label for="text">Book Name</label>
+            <input type="text" name="text" placeholder="Enter the book name">
+            
+            <label for="text">Author Name</label>
+            <input type="text" name="author" placeholder="Enter the author name">
+            
+            <label for="number">Page</label>
+            <input type="number" name="no" placeholder="Enter the page number">
+            
+            <button type="submit">Submit</button>
+        </form>
+
+        <table border="2">
+            <tr>
+                <th>Book Name</th>
+                <th>Author Name</th>
+                <th>Page Number</th>
+                <th>Action</th>
+            </tr>
+            <% book.forEach((b) => { %>
+                <tr>
+                    <td><%= b.text %></td>
+                    <td><%= b.author %></td>
+                    <td><%= b.no %></td>
+                    <td class="action-links">
+                        <a href="/editDoc/<%= b.id %>">Edit</a>
+                        <a href="/deleteDoc/<%= b.id %>">Delete</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+</body>
+</html>
